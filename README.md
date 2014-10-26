@@ -37,10 +37,14 @@ clojure environment.  Dereference the atoms to access the values.  The
 atoms are: `k1, k2, k3, k4``.
 
 The text editor pane is a handy place to edit clojure code prior to
-sending to the repl.  This is the
+sending to the repl.  This is the CodeMirror text editor and I've
+enabled clojure syntax highlighting, line numbers, matching &
+auto-closing brackets along with emacs keybindings.  This should allow
+for a reasonable editor experience for single file live-coding.
 
 The repl is where to put code to send to the clojure session and get
-overtone to respond.
+overtone to respond.  Paste code here and hit return to send to
+clojure.
 
 ## To Do
 
