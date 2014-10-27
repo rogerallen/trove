@@ -30,11 +30,15 @@
 
 (defn eval-json [req]
   (let [expr (-> req :params :expr)
+        _ (println ">" expr)
         {:keys [expr result error message] :as res} (eval-request expr)
+        ;;_ (println "%" res)
         data (if error
                res
                (let [[out res] result]
                  {:expr (pr-str expr)
                   :result (str out (pr-str res))}))]
-    (println ">" (:expr data) "\n;" (:result data))
+    (if (nil? error)
+      (println ";" (:result data))
+      (println ";" (:message data)))
     {:body data}))  ;; ring middleware fixes json
