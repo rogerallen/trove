@@ -150,14 +150,14 @@ function interfacePanelInit() {
             eval_clojure("(reset! K4 "+Math.floor(127*this.value)+")");
         },
     });
-    var m = new Interface.MultiSlider({
+    var s = new Interface.MultiSlider({
         count:8,
         bounds:[.42,.05,.2,.9],
         background:   "#5881d8",
         fill:         "#63b132",
         stroke:       "#444",
         onvaluechange : function(number, value) {
-            eval_clojure("(swap! M (fn [x] (assoc x "+number+" "+Math.floor(127*value)+")))");
+            eval_clojure("(swap! S (fn [x] (assoc x "+number+" "+Math.floor(127*value)+")))");
         }
     });
     var b = new Interface.MultiButton({
@@ -172,13 +172,13 @@ function interfacePanelInit() {
     });
 
     a.background = "#eee";
-    a.add(l1, l2, l3, l4, k1, k2, k3, k4, m, b);
+    a.add(l1, l2, l3, l4, k1, k2, k3, k4, s, b);
     eval_clojure("(do  \
   (defonce K1 (atom 31)) \
   (defonce K2 (atom 31)) \
   (defonce K3 (atom 31)) \
   (defonce K4 (atom 31)) \
-  (defonce M (atom [0 0 0 0 0 0 0 0])) \
+  (defonce S (atom [0 0 0 0 0 0 0 0])) \
   (defonce B (atom [[0 0 0 0 0 0 0 0] \
                     [0 0 0 0 0 0 0 0] \
                     [0 0 0 0 0 0 0 0] \

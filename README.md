@@ -34,7 +34,7 @@ In the webapp, there are three panels to notice.
 
 When you adjust the dials in the panel, you affect atoms in the
 clojure environment.  Dereference the atoms to access the values.  The
-atoms are: `K1, K2, K3, K4, M, B`.  Dials can be customized for your
+atoms are: `K1, K2, K3, K4, S, B`.  Dials can be customized for your
 particular application.  See `interfacePanelInit()` in
 `resources/public/js/trove.js`.
 
