@@ -68,6 +68,8 @@ $(document).ready(function() {
 
 /* here is the GUI interface panel */
 
+
+
 function interfacePanelInit() {
     var a = new Interface.Panel({
         container:$("#panel"),
@@ -106,7 +108,7 @@ function interfacePanelInit() {
         stroke:       "#444",
         onvaluechange: function() {
             l1.setValue("k1: "+Math.floor(127*this.value));
-            eval_clojure("(reset! k1 "+Math.floor(127*this.value)+")")
+            eval_clojure("(reset! K1 "+Math.floor(127*this.value)+")");
         },
     });
     var k2 = new Interface.Knob({
@@ -119,7 +121,7 @@ function interfacePanelInit() {
         stroke:       "#444",
         onvaluechange: function() {
             l2.setValue("k2: "+Math.floor(127*this.value));
-            eval_clojure("(reset! k2 "+Math.floor(127*this.value)+")")
+            eval_clojure("(reset! K2 "+Math.floor(127*this.value)+")");
         },
     });
     var k3 = new Interface.Knob({
@@ -132,7 +134,7 @@ function interfacePanelInit() {
         stroke:       "#444",
         onvaluechange: function() {
             l3.setValue("k3: "+Math.floor(127*this.value));
-            eval_clojure("(reset! k3 "+Math.floor(127*this.value)+")")
+            eval_clojure("(reset! K3 "+Math.floor(127*this.value)+")");
         },
     });
     var k4 = new Interface.Knob({
@@ -145,10 +147,48 @@ function interfacePanelInit() {
         stroke:       "#444",
         onvaluechange: function() {
             l4.setValue("k4: "+Math.floor(127*this.value));
-            eval_clojure("(reset! k4 "+Math.floor(127*this.value)+")")
+            eval_clojure("(reset! K4 "+Math.floor(127*this.value)+")");
         },
     });
+    var m = new Interface.MultiSlider({
+        count:8,
+        bounds:[.42,.05,.2,.9],
+        background:   "#5881d8",
+        fill:         "#63b132",
+        stroke:       "#444",
+        onvaluechange : function(number, value) {
+            eval_clojure("(swap! M (fn [x] (assoc x "+number+" "+Math.floor(127*value)+")))");
+        }
+    });
+    var b = new Interface.MultiButton({
+        row:10, columns:8,
+        bounds:[.635,.05,.355,.9],
+        background:   "#5881d8",
+        fill:         "#63b132",
+        stroke:       "#444",
+        onvaluechange : function(row, col, value) {
+            eval_clojure("(swap! B (fn [x] (assoc-in x ["+row+" "+col+"] "+value+")))");
+        },
+    });
+
     a.background = "#eee";
-    a.add(l1, l2, l3, l4, k1, k2, k3, k4);
-    eval_clojure("(do  (def k1 (atom 31)) (def k2 (atom 31)) (def k3 (atom 31)) (def k4 (atom 31)))")
+    a.add(l1, l2, l3, l4, k1, k2, k3, k4, m, b);
+    eval_clojure("(do  \
+  (defonce K1 (atom 31)) \
+  (defonce K2 (atom 31)) \
+  (defonce K3 (atom 31)) \
+  (defonce K4 (atom 31)) \
+  (defonce M (atom [0 0 0 0 0 0 0 0])) \
+  (defonce B (atom [[0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0] \
+                    [0 0 0 0 0 0 0 0]])) \
+)");
+
 }

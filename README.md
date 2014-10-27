@@ -34,7 +34,9 @@ In the webapp, there are three panels to notice.
 
 When you adjust the dials in the panel, you affect atoms in the
 clojure environment.  Dereference the atoms to access the values.  The
-atoms are: `k1, k2, k3, k4``.
+atoms are: `K1, K2, K3, K4, M, B`.  Dials can be customized for your
+particular application.  See `interfacePanelInit()` in
+`resources/public/js/trove.js`.
 
 The text editor pane is a handy place to edit clojure code prior to
 sending to the repl.  This is the CodeMirror text editor and I've
@@ -49,10 +51,13 @@ clojure.
 ## To Do
 
 If there is interest, consider helping with these items:
-* open a file to insert into the text editor
 * select text in the editor, send to repl via some key combo.
-* redirect the text from the terminal into the repl area
+* open a file to insert into the text editor
+* redirect the stdout/stderr text from the terminal into the repl area
+* set dial values from Clojure
+* prevent reloading via dialog box
 * vi keybindings?
+* do we need more security than limiting webserver to localhost?
 
 ## Example
 
@@ -71,12 +76,12 @@ Then, copy-paste the code to the repl one statement at a time.
     (out 0 (* env snd))))
 
 (defn one [beat]
-    (at (metro beat) (foo @k1))
+    (at (metro beat) (foo @K1))
     (apply-by (metro (+ 1 beat)) #'one [(+ 1 beat)]))
 ```
 
 Start playing single beats by putting `(one (metro))` into the repl
-and then adjust the `k1` dial to hear different pitches (by default k1
+and then adjust the `K1` dial to hear different pitches (by default K1
 is 31 and will be too low to be audible).  When you want to stop, use
 `(stop)`
 
