@@ -29,4 +29,7 @@
        [:textarea#editortextarea]]
       [:div#console.console]]
      [:div.footer
-      [:p.bottom "Copyright © 2014 Roger Allen."]]]]))
+      [:p.bottom
+       "Source: "
+       [:a {:href "https://github.com/rogerallen/trove"}
+        "github.com/rogerallen/trove"]]]]]))
