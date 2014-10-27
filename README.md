@@ -36,7 +36,8 @@ When you adjust the dials in the panel, you affect atoms in the
 clojure environment.  Dereference the atoms to access the values.  The
 atoms are: `K1, K2, K3, K4, S, B`.  Dials can be customized for your
 particular application.  See `interfacePanelInit()` in
-`resources/public/js/trove.js`.
+`resources/public/js/trove.js`.  Any controls from the
+http://www.charlie-roberts.com/interface/ library may be used.
 
 The text editor pane is a handy place to edit clojure code prior to
 sending to the repl.  This is the CodeMirror text editor and I've
@@ -52,6 +53,7 @@ clojure.
 
 If there is interest, consider helping with these items:
 * select text in the editor, send to repl via some key combo.
+* are there other interface GUI libraries to consider?
 * open a file to insert into the text editor
 * redirect the stdout/stderr text from the terminal into the repl area
 * set dial values from Clojure
